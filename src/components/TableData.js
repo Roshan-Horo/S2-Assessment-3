@@ -48,12 +48,12 @@ const TableData = () => {
           </tr>
           
           {items.map(item => {
-                
+              var date = new Date( parseInt(item.date) * 1000).toLocaleString()
               
               return (<tr>
                <td>{`${item.firstName} ${item.lastName}`}</td>
                <td>{item.location}</td>
-               <td>{item.date}</td>
+               <td>{date}</td>
                <td>${item.salary}</td>
               </tr>)
           })}
