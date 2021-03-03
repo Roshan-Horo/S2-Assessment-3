@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  
+  }
+  body{
+    font-family: sans-serif;
+  }
+  .container{
+  
+    width: 95%;
+    margin: 0 auto;
+  }
+  
+  .options,.pagination{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;;
+  }
+  input,select,option{
+    padding: 0.3rem ;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid #000;
+  }
+  
+  /* =======
+  Table
+  ======== */
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid #000;
+    text-align: left;
+    padding: 0.5rem;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+  th{
+    background-color: #6C65CE;
+    color: #fff;
+  }
+  
+  /* ========
+  pagination
+  ==========*/
+  
+  .pagination p{
+    font-size: 0.8rem;
+  }
+  .pagination button{
+    padding: 0.225rem 0.5rem;
+    cursor: pointer;
+  }
