@@ -28,24 +28,38 @@
   /* =======
   Table
   ======== */
-  table {
+  
+  .data-container{
     font-family: arial, sans-serif;
-    border-collapse: collapse;
     width: 100%;
+    border: 1px solid #000;;
   }
-  td, th {
-    border: 1px solid #000;
-    text-align: left;
-    padding: 0.5rem;
+  .data-row{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    border-bottom: 1px solid #000;
+    border-collapse: collapse;
   }
-  tr:nth-child(even) {
+  .data-row:nth-child(even){
     background-color: #dddddd;
   }
-  th{
+  .data-row:last-child{
+    border-bottom: none;
+  }
+
+  .data-cell{
+    border-right: 1px solid #000;
+    border-collapse: collapse;
+    padding: 0.5rem 0.5rem;
+  }
+  .data-cell:last-child{
+    border-right: none;
+  }
+  .data-head{
     background-color: #6C65CE;
     color: #fff;
+    font-weight: 700;
   }
-  
   /* ========
   pagination
   ==========*/
