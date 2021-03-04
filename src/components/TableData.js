@@ -102,7 +102,7 @@ const TableData = () => {
     {!keyword && (currentEntry.map(item => {
       var date = new Date( parseInt(item.date) * 1000).toLocaleString()
 
-      return (<div className="data-row">
+      return (<div className="data-row" key={item.id}>
       <div className="data-cell">{`${item.firstName} ${item.lastName}`}</div>
       <div className="data-cell">{item.location}</div>
       <div className="data-cell">{date}</div>
@@ -111,16 +111,16 @@ const TableData = () => {
     }))}
 
     {keyword && (items.filter(item => {
-      if(keyword === ""){
-        return item
-      }else if(item.firstName.toLowerCase().includes(keyword.toLowerCase()) 
+       if(item.firstName.toLowerCase().includes(keyword.toLowerCase()) 
                || item.lastName.toLowerCase().includes(keyword.toLowerCase())){
              return item
+      }else{
+        return item
       }
     }).map(item => {
       var date = new Date( parseInt(item.date) * 1000).toLocaleString()
 
-      return (<div className="data-row">
+      return (<div className="data-row" key={item.id}>
       <div className="data-cell">{`${item.firstName} ${item.lastName}`}</div>
       <div className="data-cell">{item.location}</div>
       <div className="data-cell">{date}</div>
@@ -137,20 +137,21 @@ const TableData = () => {
           {indexOfLastEntry >= items.length ? items.length : indexOfLastEntry}
           of {items.length} entries</p>
           <ul className="pages">
-             <li className="page"><a href="#">Previous</a></li>
+             <li className="page"><button>Previous</button></li>
              
              {pageNumbers.map(number => (
                <li 
+                key={number}
                 className={isActive ? 'page current' : 'page'}>
-                <a href="!#"
+                <button href="#"
                  onClick={() => paginate(number)}
                 >
                 {number}
-                </a>
+                </button>
                 </li>
              ))}
 
-             <li className="page"><a href="!#">Next</a></li>
+             <li className="page"><button>Next</button></li>
           </ul>
         </div>
       </div> 
