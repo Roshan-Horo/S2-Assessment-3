@@ -93,14 +93,20 @@
     border: 1px solid #000;
     padding: 0.5rem 1rem;
     text-decoration: none;
+    outline: none;
     transform: scale(1);
     transition: transform 0.3s;
   }
   .page button:hover{
     transform: scale(1.2);
+    cursor: pointer;
   }
   .current button{
     background-color: #6C65CE;
     color: #fff;
     font-weight: 700;
+  }
+
+  .page .disabled:hover{
+    cursor: not-allowed;
   }

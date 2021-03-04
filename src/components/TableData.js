@@ -7,7 +7,8 @@ const TableData = () => {
     const [keyword,setKeyword] = useState('')
     const [currentPage,setCurrentPage] = useState(1)
     const [entryPerPage,setEntryPerPage] = useState(10)
-    const [isActive,setIsActive] = useState(false)
+
+
 
     useEffect(() => {
        fetch(`https://raw.githubusercontent.com/accuknox/TrainingAPI/main/${size}.json`)
@@ -19,7 +20,8 @@ const TableData = () => {
     // get current page data
     const indexOfLastEntry = currentPage * entryPerPage;
     const indexOfFirstEntry = indexOfLastEntry - entryPerPage;
-    const currentEntry = items.slice(indexOfFirstEntry,indexOfLastEntry);
+    let data = items
+    const currentEntry = data.slice(indexOfFirstEntry,indexOfLastEntry);
     // No. of pages
     const pageNumbers = []
     for(let i=1;i<=Math.ceil(items.length/entryPerPage);i++){
@@ -27,13 +29,10 @@ const TableData = () => {
     }
     // change page
     const paginate = (pageNumber) => {
-      console.log(pageNumber)
       setCurrentPage(pageNumber)
-      setIsActive(!isActive)
     }
 
-    console.log(pageNumbers)
-    console.log(indexOfLastEntry,indexOfFirstEntry,currentEntry);
+    
 
     return (
         <React.Fragment>
@@ -111,11 +110,14 @@ const TableData = () => {
     }))}
 
     {keyword && (items.filter(item => {
-       if(item.firstName.toLowerCase().includes(keyword.toLowerCase()) 
+       if(keyword === ''){
+         return item
+       }
+       else if(item.firstName.toLowerCase().includes(keyword.toLowerCase()) 
                || item.lastName.toLowerCase().includes(keyword.toLowerCase())){
              return item
       }else{
-        return item
+        return null
       }
     }).map(item => {
       var date = new Date( parseInt(item.date) * 1000).toLocaleString()
@@ -133,17 +135,20 @@ const TableData = () => {
   </div>
         
         <div className="pagination">
-          <p>Showing {indexOfFirstEntry} to 
-          {indexOfLastEntry >= items.length ? items.length : indexOfLastEntry}
-          of {items.length} entries</p>
+          <p>Showing {indexOfFirstEntry} to {indexOfLastEntry >= items.length ? items.length : indexOfLastEntry} of {items.length} entries</p>
           <ul className="pages">
-             <li className="page"><button>Previous</button></li>
+             <li className="page">
+             <button
+              onClick={() => (currentPage > 1 ? setCurrentPage(currentPage - 1) : null)}
+              >Previous
+              </button>
+              </li>
              
              {pageNumbers.map(number => (
                <li 
                 key={number}
-                className={isActive ? 'page current' : 'page'}>
-                <button href="#"
+                className={number === currentPage ? 'page current' : 'page'}>
+                <button 
                  onClick={() => paginate(number)}
                 >
                 {number}
@@ -151,7 +156,12 @@ const TableData = () => {
                 </li>
              ))}
 
-             <li className="page"><button>Next</button></li>
+             <li className="page">
+             <button 
+             onClick={() => (currentPage < pageNumbers.length ? setCurrentPage(currentPage + 1) : null)}
+             >Next
+             </button>
+             </li>
           </ul>
         </div>
       </div> 
