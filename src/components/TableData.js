@@ -135,7 +135,7 @@ const TableData = () => {
   </div>
         
         <div className="pagination">
-          <p>Showing {indexOfFirstEntry} to {indexOfLastEntry >= items.length ? items.length : indexOfLastEntry} of {items.length} entries</p>
+          <p>Showing <strong>{indexOfFirstEntry}</strong> to <strong>{indexOfLastEntry >= items.length ? items.length : indexOfLastEntry}</strong> of <strong>{items.length}</strong> entries</p>
           <ul className="pages">
              <li className="page">
              <button
